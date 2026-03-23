@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Smart Bazar – Community Affiliate Marketplace. Anyone can upload products and earn!">
+  <meta name="keywords" content="affiliate, deals, products, smart bazar, shopping, earn money">
+  <meta name="author" content="Smart Bazar">
+  <title>Smart Bazar | Community Affiliate Marketplace</title>
+  
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1454423689079498"
+     crossorigin="anonymous"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: #1a2a3a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4f8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2c7da0;
+      border-radius: 10px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0f4c5f, #2c7da0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e4e;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: #2c7da0;
+    }
+    .upload-btn {
+      background: linear-gradient(135deg, #2c7da0, #1f5e7e);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600 !important;
+    }
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(44,125,160,0.3);
+    }
+    .search-bar {
+      display: flex;
+      background: #f5f9fe;
+      border-radius: 48px;
+      padding: 6px 6px 6px 18px;
+      border: 1px solid #e2edf2;
+    }
+    .search-bar input {
+      border: none;
+      background: transparent;
+      padding: 8px 8px 8px 0;
+      width: 200px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .search-bar button {
+      background: #2c7da0;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .search-bar button:hover {
+      background: #1f5e7e;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 20px 60px;
+      background: linear-gradient(145deg, #ffffff 0%, #f6fafd 100%);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #134b5e, #2c7da0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #3e5a6b;
+      max-width: 650px;
+      margin: 0 auto 28px;
+    }
+    .cta-btn {
+      background: #2c7da0;
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 14px rgba(44,125,160,0.2);
+    }
+    .cta-btn:hover {
+      background: #1f5e7e;
+      transform: translateY(-2px);
+    }
+
+    .ad-container {
+      background: #f8fafc;
+      border-radius: 20px;
+      margin: 30px 0;
+      text-align: center;
+      padding: 12px 0;
+      overflow-x: auto;
+    }
+    .ad-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8aa0ae;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 48px 0 24px 0;
+      color: #1e3b44;
+      border-left: 5px solid #2c7da0;
+      padding-left: 20px;
+    }
+    .categories-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .cat-card {
+      flex: 1 1 180px;
+      background: #f9fdfe;
+      border-radius: 36px;
+      padding: 18px 12px;
+      text-align: center;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: 1px solid #e0edf2;
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+      background: white;
+      border-color: #bddbe6;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.03);
+    }
+    .cat-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+    .cat-card h4 {
+      font-weight: 600;
+      color: #1e4a5f;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 30px 0 40px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid #eef2f8;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(44,125,160,0.15);
+      border-color: #cde3ec;
+    }
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #f1f6f9;
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.02);
+    }
+    .product-info {
+      padding: 20px 18px 24px;
+    }
+    .product-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a3b44;
+    }
+    .product-desc {
+      font-size: 0.85rem;
+      color: #5b7a8c;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    .buy-btn {
+      width: 100%;
+      background: #2c7da0;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 12px;
+    }
+    .buy-btn:hover {
+      background: #0f5b78;
+      transform: scale(0.98);
+    }
+    .community-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(44,125,160,0.9);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin: 30px 0;
+    }
+    .blog-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 20px;
+      border: 1px solid #e6f0f4;
+    }
+    .blog-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #1f5e6e;
+    }
+    .blog-card p {
+      color: #557a8a;
+      font-size: 0.9rem;
+    }
+    .read-more {
+      display: inline-block;
+      margin-top: 14px;
+      color: #2c7da0;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .footer {
+      background: #fafefe;
+      border-top: 1px solid #e0edf2;
+      margin-top: 60px;
+      padding: 48px 0 28px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 160px;
+    }
+    .footer-col h4 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #174e60;
+    }
+    .footer-col a {
+      display: block;
+      color: #527a8a;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    .footer-col a:hover {
+      color: #2c7da0;
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #e4eef3;
+      font-size: 0.8rem;
+      color: #6f8f9c;
+    }
+    
+    /* Upload Modal - Open for Everyone */
+    .upload-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    .modal-content {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 28px;
+      padding: 40px;
+      position: relative;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #666;
+      transition: 0.2s;
+    }
+    .modal-close:hover {
+      color: #e74c3c;
+    }
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #1e3b44;
+    }
+    .modal-subtitle {
+      color: #6f8f9c;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 25px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #1e3b44;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2edf2;
+      border-radius: 16px;
+      font-size: 1rem;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #2c7da0;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .image-preview {
+      margin-top: 10px;
+      max-width: 150px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .image-preview img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .upload-submit-btn {
+      background: linear-gradient(135deg, #2c7da0, #1f5e7e);
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .upload-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(44,125,160,0.3);
+    }
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+    .info-note {
+      background: #eef2f8;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: #2c7da0;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .search-bar {
+        width: 100%;
+      }
+      .search-bar input {
+        flex: 1;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .modal-content {
+        margin: 20px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo">Smart Bazar</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#products">Products</a>
+      <a href="#categories">Categories</a>
+      <a href="#blog">Blog</a>
+      <a href="#" id="uploadBtn" class="upload-btn">📤 Upload Your Product</a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products...">
+      <button id="searchBtn">Search</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Smart Bazar – Community Affiliate Marketplace</h1>
+      <p>Anyone can upload their affiliate products! Share your Amazon, Flipkart, Myntra links and earn when people buy through your link.</p>
+      <button class="cta-btn" id="exploreDealsBtn">Explore Deals →</button>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="ad-container">
+      <div class="ad-label">Sponsored</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1454423689079498"
+           data-ad-slot="8459003812"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <div class="container" id="categories">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories-grid">
+      <div class="cat-card" data-cat="all"><div class="cat-icon">🎁</div><h4>All Products</h4></div>
+      <div class="cat-card" data-cat="gadgets"><div class="cat-icon">📱</div><h4>Gadgets</h4></div>
+      <div class="cat-card" data-cat="home"><div class="cat-icon">🏠</div><h4>Home</h4></div>
+      <div class="cat-card" data-cat="beauty"><div class="cat-icon">💄</div><h4>Beauty</h4></div>
+      <div class="cat-card" data-cat="fashion"><div class="cat-icon">👗</div><h4>Fashion</h4></div>
+    </div>
+  </div>
+
+  <div class="container" id="products">
+    <h2 class="section-title">🔥 Community Products</h2>
+    <div id="productsGrid" class="products-grid"></div>
+  </div>
+
+  <div class="container">
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1454423689079498"
+           data-ad-slot="8459003812"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <div class="container" id="blog">
+    <h2 class="section-title">Smart Reads & Tips</h2>
+    <div class="blog-grid">
+      <div class="blog-card"><h4>How to Earn with Affiliate Marketing</h4><p>Share your products on Smart Bazar and earn commissions from every sale!</p><a href="#" class="read-more">Learn more →</a></div>
+      <div class="blog-card"><h4>Top 10 Affiliate Programs</h4><p>Amazon, Flipkart, Myntra and more. Start earning today.</p><a href="#" class="read-more">Read more →</a></div>
+      <div class="blog-card"><h4>Tips for Better Sales</h4><p>Upload high-quality images and write compelling descriptions.</p><a href="#" class="read-more">Read more →</a></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="ad-container">
+      <div class="ad-label">Sponsored Deals</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1454423689079498"
+           data-ad-slot="8459003812"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Smart Bazar</h4><a href="#">About Us</a><a href="#">Contact</a><a href="#">How to Upload</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Affiliate Disclosure</a></div>
+      <div class="footer-col"><h4>Community</h4><a href="#">Upload Your Product</a><a href="#">Become an Affiliate</a><a href="#">Support</a></div>
+    </div>
+    <div class="copyright">© 2025 Smart Bazar – Community Affiliate Marketplace. Anyone can upload and earn! | All trademarks are property of their owners.</div>
+  </div>
+</footer>
+
+<!-- Upload Modal - Open for EVERYONE (No Password) -->
+<div id="uploadModal" class="upload-modal">
+  <div class="modal-content">
+    <span class="modal-close" id="closeModal">&times;</span>
+    <h2 class="modal-title">📤 Upload Your Affiliate Product</h2>
+    <p class="modal-subtitle">Share your product and earn commissions when people buy through your link!</p>
+    
+    <div class="info-note">
+      💡 <strong>How it works:</strong> Upload your product image, add your affiliate link, name and description. When customers click "Buy Now", they go directly to your affiliate link and you earn commission!
+    </div>
+    
+    <form id="uploadForm">
+      <div class="form-group">
+        <label>📸 Product Image *</label>
+        <input type="file" id="productImage" accept="image/*" required>
+        <div id="imagePreviewModal" class="image-preview"></div>
+      </div>
+      
+      <div class="form-group">
+        <label>🔗 Affiliate Link *</label>
+        <input type="url" id="affiliateLink" required placeholder="https://amazon.in/dp/... or https://flipkart.com/...">
+        <small style="color: #6f8f9c;">Paste your Amazon, Flipkart, Myntra, or any affiliate link</small>
+      </div>
+      
+      <div class="form-group">
+        <label>🏷️ Product Name *</label>
+        <input type="text" id="productName" required placeholder="e.g., Wireless Headphones with Mic">
+      </div>
+      
+      <div class="form-group">
+        <label>📝 Short Description *</label>
+        <textarea id="productDesc" required placeholder="Describe your product briefly..."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>📂 Category</label>
+        <select id="productCategory">
+          <option value="gadgets">📱 Gadgets</option>
+          <option value="home">🏠 Home & Living</option>
+          <option value="beauty">💄 Beauty</option>
+          <option value="fashion">👗 Fashion</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="upload-submit-btn">✨ Upload Product →</button>
+      <div id="successMsg" class="success-message">✅ Product uploaded successfully! It will appear on the website.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  let productsData = [];
+  
+  function loadProducts() {
+    const saved = localStorage.getItem('smartBazarProducts');
+    if (saved) {
+      productsData = JSON.parse(saved);
+    } else {
+      // Default products
+      productsData = [
+        {
+          id: 1,
+          category: "gadgets",
+          name: "Noise Cancelling Wireless Headphones",
+          description: "Immersive sound with 40hr battery life, deep bass. Perfect for work and travel.",
+          image: "https://placehold.co/400x300/eef2f8/2c7da0?text=Premium+Headphones",
+          affiliateLink: "https://www.amazon.in/dp/B09X67YH3R?tag=smartbazar0d-21",
+          uploadedBy: "Smart Bazar"
+        },
+        {
+          id: 2,
+          category: "gadgets",
+          name: "Smart Watch Pro",
+          description: "Track fitness, heart rate, and notifications in style. 1.8” AMOLED display.",
+          image: "https://placehold.co/400x300/eef2f8/2c7da0?text=Smart+Watch",
+          affiliateLink: "https://www.flipkart.com/smart-watch-pro/p/itm?affid=smartbazar",
+          uploadedBy: "Smart Bazar"
+        },
+        {
+          id: 3,
+          category: "home",
+          name: "Ergonomic Office Chair",
+          description: "Breathable mesh, lumbar support, adjustable height. Perfect for long work hours.",
+          image: "https://placehold.co/400x300/eef2f8/2c7da0?text=Office+Chair",
+          affiliateLink: "https://www.amazon.in/dp/B08N5WRW1S?tag=smartbazar0d-21",
+          uploadedBy: "Smart Bazar"
+        }
+      ];
+      saveProducts();
+    }
+  }
+  
+  function saveProducts() {
+    localStorage.setItem('smartBazarProducts', JSON.stringify(productsData));
+  }
+  
+  let activeCategory = "all";
+  let searchQuery = "";
+  
+  function renderProducts() {
+    const container = document.getElementById("productsGrid");
+    if (!container) return;
+    let filtered = productsData.filter(prod => {
+      if (activeCategory !== "all" && prod.category !== activeCategory) return false;
+      if (searchQuery.trim() !== "") {
+        const queryLower = searchQuery.toLowerCase();
+        return prod.name.toLowerCase().includes(queryLower) || prod.description.toLowerCase().includes(queryLower);
+      }
+      return true;
+    });
+  
+    if (filtered.length === 0) {
+      container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding: 40px;">✨ No products found. Be the first to <strong style="color:#2c7da0; cursor:pointer;" id="uploadPrompt">upload a product!</strong></div>`;
+      document.getElementById('uploadPrompt')?.addEventListener('click', () => {
+        document.getElementById('uploadModal').style.display = 'block';
+      });
+      return;
+    }
+  
+    container.innerHTML = filtered.map(product => `
+      <div class="product-card">
+        <div class="community-badge">👥 Community</div>
+        <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300/eef2f8/2c7da0?text=Image+Not+Found'">
+        <div class="product-info">
+          <div class="product-title">${escapeHtml(product.name)}</div>
+          <div class="product-desc">${escapeHtml(product.description)}</div>
+          <button class="buy-btn" data-link="${escapeAttr(product.affiliateLink)}" data-name="${escapeAttr(product.name)}">🛒 Buy Now</button>
+        </div>
+      </div>
+    `).join('');
+  
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const link = btn.getAttribute('data-link');
+        if (link && link.startsWith('http')) {
+          window.open(link, '_blank');
+        } else {
+          alert('Affiliate link not configured yet!');
+        }
+      });
+    });
+  }
+  
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+  function escapeAttr(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  
+  let currentImageData = null;
+  
+  document.getElementById('productImage')?.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        currentImageData = event.target.result;
+        const preview = document.getElementById('imagePreviewModal');
+        preview.innerHTML = `<img src="${currentImageData}" alt="Preview" style="max-width: 150px; border-radius: 12px;">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  function initCategories() {
+    const catCards = document.querySelectorAll('.cat-card');
+    catCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const cat = card.getAttribute('data-cat');
+        activeCategory = cat;
+        catCards.forEach(c => c.style.background = '#f9fdfe');
+        card.style.background = '#e5f2f7';
+        card.style.borderColor = '#2c7da0';
+        renderProducts();
+        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+  
+  function initSearch() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    function performSearch() {
+      searchQuery = searchInput.value;
+      activeCategory = "all";
+      document.querySelectorAll('.cat-card').forEach(c => c.style.background = '#f9fdfe');
+      renderProducts();
+    }
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') performSearch();
+    });
+  }
+  
+  function initUploadModal() {
+    const uploadBtn = document.getElementById('uploadBtn');
+    const modal = document.getElementById('uploadModal');
+    const closeBtn = document.getElementById('closeModal');
+    const form = document.getElementById('uploadForm');
+    const successMsg = document.getElementById('successMsg');
+    
+    uploadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      form.reset();
+      currentImageData = null;
+      document.getElementById('imagePreviewModal').innerHTML = '';
+      successMsg.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        form.reset();
+        currentImageData = null;
+        document.getElementById('imagePreviewModal').innerHTML = '';
+        successMsg.style.display = 'none';
+      }
+    });
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('productName').value;
+      const desc = document.getElementById('productDesc').value;
+      const link = document.getElementById('affiliateLink').value;
+      const category = document.getElementById('productCategory').value;
+      
+      if (!name || !desc || !link || !currentImageData) {
+        alert('Please fill all fields and upload an image!');
+        return;
+      }
+      
+      const newProduct = {
+        id: Date.now(),
+        category: category,
+        name: name,
+        description: desc,
+        image: currentImageData,
+        affiliateLink: link,
+        uploadedBy: "Community Member"
+      };
+      
+      productsData.unshift(newProduct);
+      saveProducts();
+      renderProducts();
+      
+      successMsg.style.display = 'block';
+      form.reset();
+      currentImageData = null;
+      document.getElementById('imagePreviewModal').innerHTML = '';
+      
+      setTimeout(() => {
+        modal.style.display = 'none';
+        successMsg.style.display = 'none';
+      }, 2000);
+    });
+  }
+  
+  document.getElementById('exploreDealsBtn')?.addEventListener('click', () => {
+    activeCategory = "all";
+    searchQuery = "";
+    document.getElementById('searchInput').value = "";
+    document.querySelectorAll('.cat-card').forEach(c => c.style.background = '#f9fdfe');
+    renderProducts();
+    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  
+  loadProducts();
+  renderProducts();
+  initCategories();
+  initSearch();
+  initUploadModal();
+</script>
+</body>
+</html>
